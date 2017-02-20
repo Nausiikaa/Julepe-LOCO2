@@ -11,6 +11,8 @@ public class Jugador
     private String nombre;
     private Carta[] mano;
     private int cartasEnMano;
+    private Baza[]bazasGanadas;
+    private int contadorBazas;
     /**
      * Constructor for objects of class Jugador
      */
@@ -19,6 +21,8 @@ public class Jugador
         this.nombre = nombre;
         mano = new Carta[5];
         cartasEnMano = 0;
+        bazasGanadas = new Baza[5];
+        contadorBazas = 0;
     }
     public String getNombre()
     {
@@ -79,5 +83,19 @@ public class Jugador
             }
         }
         return cartaTirada;
+    }
+    public Carta tirarCartaInteligentemente(int paloQuePinta,Carta cartaGanadoraPorElMomento,int paloDeSalida)
+    {
+        Carta cartaATirar = sacarCartaAleatoria();
+        return cartaATirar;
+    }
+    public void addBaza(Baza bazaQueGano)
+    {
+        bazasGanadas[contadorBazas]=bazaQueGano;
+        contadorBazas++;
+    }
+    public int getNumeroBazasGanadas()
+    {
+        return contadorBazas;
     }
 }

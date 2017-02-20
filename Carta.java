@@ -9,93 +9,88 @@ public class Carta
 {
     // instance variables - replace the example below with your own
     private int valor;
-    private int palo;
+    private Palo palo;
 
     /**
      * Constructor for objects of class Carta
      */
-    public Carta(int valor,int palo)
+    public Carta(int valor,Palo palo)
     {
         // Numero de carta: De 1 a 7 y de 10 a 12(sota,caballo y rey)
         this.valor = valor;
         // Valor del palo: 0 oros,1 copas,2 espadas y 3 bastos
         this.palo= palo;
     }
+
     public int getValor(){
         return valor;
     }
-    public int getPalo(){
+
+    public Palo getPalo(){
         return palo;
     }
+
     public String getPaloNombre()
     {
-        String textoPalo = "";
-        if(palo == 0){
-            textoPalo = "oros";
-        }
-        if(palo == 1){
-            textoPalo = "copas";
-        }
-        if(palo == 2){
-            textoPalo = "espadas";
-        }
-        if(palo == 3){
-            textoPalo = "bastos";
-        }
-        return textoPalo;
+        return palo.name();
     }
+
     public String toString(){
-        String textoADevolver = String.valueOf(valor);
+        String textoValor = String.valueOf(valor);
         String textoPalo = "";
-        if(palo == 0){
-            textoPalo = " de oros";
+        String textoADevolver = "";
+        switch (palo) {
+            case OROS:
+            textoPalo = "de oros";
+            break;
+            case COPAS:
+            textoPalo = "de copas";
+            break;
+            case ESPADAS:
+            textoPalo = "de espadas";
+            break;
+            case BASTOS:
+            textoPalo = "de bastos";
+            break;
         }
-        if(palo == 1){
-            textoPalo = " de copas";
+        switch (valor) {
+            case 1:
+            textoValor = "as";
+            break;
+            case 10:
+            textoValor = "sota";
+            break;
+            case 11:
+            textoValor = "caballo";
+            break;
+            case 12:
+            textoValor = "rey";
+            break;
         }
-        if(palo == 2){
-            textoPalo = " de espadas";
-        }
-        if(palo == 3){
-            textoPalo = " de bastos";
-        }
-        if(valor == 1 || valor >= 10 && valor <=12){
-            if(valor == 1){
-                textoADevolver = "as" + textoPalo;
-            }
-            if(valor == 10){
-                textoADevolver = "sota" + textoPalo;
-
-            }
-            if(valor == 11){
-                textoADevolver = "caballo" + textoPalo;
-
-            }
-            if (valor == 12){
-                textoADevolver = "rey" + textoPalo;
-
-            }
-        }
-        textoADevolver = String.valueOf(valor) + textoPalo + "";
+        textoADevolver = textoValor + " " + textoPalo;
         return textoADevolver;
     }
-    public boolean ganaA(Carta cartaAComparar, int paloQuePinta)
+
+    public boolean ganaA(Carta cartaACompararPreviamenteTirada, Palo paloQuePinta)
     {
         boolean gana = false;
-        if (palo == cartaAComparar.getPalo()) {
+
+        if (palo == cartaACompararPreviamenteTirada.getPalo()) {
             // En caso de que tengan el mismo palo...
-            if (getPosicionEscalaTute() > cartaAComparar.getPosicionEscalaTute()) {
+            if (getPosicionEscalaTute() > cartaACompararPreviamenteTirada.getPosicionEscalaTute()) {
                 gana = true;
             }
         }
         else {
             // En caso de que tengan distinto palo...
-            if (cartaAComparar.getPalo() != paloQuePinta) {
+            if (palo == paloQuePinta) {
                 gana = true;
             }
         } 
+
         return gana;
     }
+
     public int getPosicionEscalaTute() 
     {
         int posicion = valor;

@@ -11,7 +11,7 @@ public class Juego
     // instance variables - replace the example below with your own
     private Jugador[] jugadoresEnPartida;
     private Mazo mazo;
-    private int paloQuePinta;
+    private Palo paloQuePinta;
     public Juego(int numeroDeJugadores,String nombreJugadorHumano)
     {
 
@@ -49,7 +49,7 @@ public class Juego
             System.out.println("Bienvenido " + nombre + ".");
         }
     }
-    public int getPaloPintado(){
+    public Palo getPaloPintado(){
         return paloQuePinta;
     }
     public void repartirCartas()
@@ -65,7 +65,7 @@ public class Juego
                 jugadorActual.recibirCarta(cartaARepartir);
                 if(indexLento == 4 && indexRapido == (jugadoresEnPartida.length - 1)){
                     paloQuePinta = cartaARepartir.getPalo();
-                    System.out.println("Pintan " + cartaARepartir.getPaloNombre() + " (" + paloQuePinta + ").");
+                    System.out.println("Pintan " +  paloQuePinta.toString().toLowerCase());
                 }
                 indexRapido++;
             }

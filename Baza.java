@@ -11,12 +11,12 @@ public class Baza
     private Carta[] bazaActual;
     private String[] nombresJugadores;
     private int turno;
-    private int paloPintado;
+    private Palo paloPintado;
     private Carta cartaGanadoraDeBaza;
     /**
      * Constructor for objects of class Baza
      */
-    public Baza(int jugadoresJugando,int paloQuePinta)
+    public Baza(int jugadoresJugando,Palo paloQuePinta)
     {
         bazaActual = new Carta[jugadoresJugando];
         nombresJugadores = new String[jugadoresJugando];
@@ -33,9 +33,9 @@ public class Baza
         }
     }
 
-    public int getPaloPrimeraCartaDeLaBaza()
+    public Palo getPaloPrimeraCartaDeLaBaza()
     {
-        int paloPrimeraCartaDeLaBaza = -1;
+        Palo paloPrimeraCartaDeLaBaza = null;
         int index = 0;
         if(bazaActual[index] != null){
             Carta cartaExaminandose = bazaActual[index];
